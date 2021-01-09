@@ -67,7 +67,8 @@ button:focus,
     border-radius: 5px;
 }
 
-.content .hamitems-div .hamitems button:focus {
+.content .hamitems-div .hamitems button:focus,
+.project-active {
     background-color: #66006617;
     border-radius: 5px;
 }
