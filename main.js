@@ -1,0 +1,1 @@
+(()=>{"use strict";!function(){const e=document.querySelector("#hamburgers");e.addEventListener("change",(function(){const s=document.querySelector(".hamitems-div");e.checked?(s.classList.add("active"),s.classList.remove("hidden")):(s.classList.add("hidden"),s.classList.remove("active"))}))}()})();
