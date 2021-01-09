@@ -7,7 +7,7 @@ function getProjects() {
 
 function init() {
     hamburgerMenu();
-    ProjectUI.addProjectListName();
+    ProjectUI.addAllProjectsToUI();
     let hamitems = document.querySelector('.hamitems');
     hamitems.firstElementChild.firstElementChild.click(); //goes to the first project page on document load
 }
