@@ -41,6 +41,7 @@ const ProjectUI = (() => {
         activeProject = allProjects[findProject(e.target)];
         activeProjectElem = e.target;
         e.target.classList.add('project-active');
+        document.querySelector('.proj-btns').style.display = 'block';
         document.querySelector('.proj-name').textContent = activeProject.name;
         document.querySelector('.proj-desc').textContent = activeProject.description;
     }

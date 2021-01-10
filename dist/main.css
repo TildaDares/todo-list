@@ -81,6 +81,10 @@ button:focus,
     text-decoration: underline black;
 }
 
+.proj-btns {
+    display: none;
+}
+
 .fa-trash-alt:hover,
 .fa-edit:hover {
     color: #606;
