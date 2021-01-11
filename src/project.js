@@ -16,6 +16,16 @@ const addProject = event => {
     $('#newProj').modal('hide');
 }
 
+const removeProject = () => {
+    let answer = confirm('Are you sure you want to delete this project?');
+    if (!answer) { return };
+    const index = ProjectUI.getActiveProject().projectIndex;
+    let allProjects = getProjects();
+    allProjects.splice(index, 1);
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+    ProjectUI.removeProjectFromUI();
+}
+
 const projectEditForm = () => {
     const projName = ProjectUI.getActiveProject().activeProject.name;
     const projDesc = ProjectUI.getActiveProject().activeProject.description;
@@ -35,4 +45,5 @@ const editProject = event => {
     projectBtn.click();
     $('#editProj').modal('hide');
 }
-export { addProject, projectEditForm, editProject }
+
+export { addProject, projectEditForm, editProject, removeProject }
