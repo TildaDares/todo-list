@@ -81,7 +81,8 @@ button:focus,
     text-decoration: underline black;
 }
 
-.proj-btns {
+.proj-btns,
+.new-task-btn {
     display: none;
 }
 
