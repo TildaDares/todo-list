@@ -1,32 +1,30 @@
 import { getProjects } from './index.js'
 const ProjectUI = (() => {
-    const allProjects = getProjects();
+    let allProjects = getProjects();
     const hamitems = document.querySelector('.hamitems');
     let activeProject;
     let activeProjectElem;
     const addAllProjectsToUI = () => {
         for (let i = 0; i < allProjects.length; i++) {
-            let projectBtn = createProjectList(i === (allProjects.length - 1));
-            projectBtn.textContent = allProjects[i].name;
+            createProjectList(allProjects[i]);
         }
     }
 
     const addNewProjectToUI = project => {
-        attachHorizontalRule();
-        let projectBtn = createProjectList(true);
-        projectBtn.textContent = project.name;
+        allProjects = getProjects();
+        let projectBtn = createProjectList(project);
+        projectBtn.click();
     }
 
-    const createProjectList = lastProject => {
+    const createProjectList = project => {
+        if (hamitems.firstElementChild) { attachHorizontalRule() };
         let projectLi = document.createElement('li');
         let projectBtn = document.createElement('button');
         projectLi.appendChild(projectBtn);
         hamitems.append(projectLi);
         projectBtn.className = "remove-btn";
+        projectBtn.textContent = project.name;
         projectBtn.addEventListener('click', printProject);
-        if (!lastProject) {
-            attachHorizontalRule();
-        }
         return projectBtn;
     }
 
@@ -38,7 +36,8 @@ const ProjectUI = (() => {
 
     const printProject = e => {
         if (activeProjectElem) { activeProjectElem.classList.remove('project-active') };
-        activeProject = allProjects[findProject(e.target)];
+        const index = findProject(e.target.parentNode);
+        activeProject = allProjects[index];
         activeProjectElem = e.target;
         e.target.classList.add('project-active');
         document.querySelector('.proj-btns').style.display = 'block';
@@ -47,10 +46,9 @@ const ProjectUI = (() => {
     }
 
     const findProject = element => {
-        let index = allProjects.findIndex(proj => proj.name === element.textContent);
-        return index;
+        let index = Array.from(hamitems.children).indexOf(element);
+        return index / 2;
     }
-
-    return { addAllProjectsToUI }
+    return { addAllProjectsToUI, addNewProjectToUI }
 })();
 export { ProjectUI }
