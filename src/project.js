@@ -13,6 +13,26 @@ const addProject = event => {
     const projDesc = document.querySelector('.new-proj-desc').value;
     const newProject = Project(projName, projDesc);
     ProjectUI.addNewProjectToUI(newProject);
-    document.querySelector('.new-proj-close').click();
+    $('#newProj').modal('hide');
 }
-export { addProject }
+
+const projectEditForm = () => {
+    const projName = ProjectUI.getActiveProject().activeProject.name;
+    const projDesc = ProjectUI.getActiveProject().activeProject.description;
+    document.querySelector('.edit-proj-name').value = projName;
+    document.querySelector('.edit-proj-desc').value = projDesc;
+}
+
+const editProject = event => {
+    event.preventDefault();
+    const index = ProjectUI.getActiveProject().projectIndex;
+    const projectBtn = ProjectUI.getActiveProject().activeProjectElem;
+    let allProjects = getProjects();
+    allProjects[index].name = document.querySelector('.edit-proj-name').value;
+    allProjects[index].description = document.querySelector('.edit-proj-desc').value;
+    projectBtn.textContent = allProjects[index].name;
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+    projectBtn.click();
+    $('#editProj').modal('hide');
+}
+export { addProject, projectEditForm, editProject }

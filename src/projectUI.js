@@ -4,6 +4,7 @@ const ProjectUI = (() => {
     const hamitems = document.querySelector('.hamitems');
     let activeProject;
     let activeProjectElem;
+    let projectIndex;
     const addAllProjectsToUI = () => {
         for (let i = 0; i < allProjects.length; i++) {
             createProjectList(allProjects[i]);
@@ -36,8 +37,8 @@ const ProjectUI = (() => {
 
     const printProject = e => {
         if (activeProjectElem) { activeProjectElem.classList.remove('project-active') };
-        const index = findProject(e.target.parentNode);
-        activeProject = allProjects[index];
+        projectIndex = findProject(e.target.parentNode);
+        activeProject = getProjects()[projectIndex];
         activeProjectElem = e.target;
         e.target.classList.add('project-active');
         document.querySelector('.proj-btns').style.display = 'block';
@@ -49,6 +50,10 @@ const ProjectUI = (() => {
         let index = Array.from(hamitems.children).indexOf(element);
         return index / 2;
     }
-    return { addAllProjectsToUI, addNewProjectToUI }
+
+    const getActiveProject = () => {
+        return { projectIndex, activeProjectElem, activeProject };
+    }
+    return { addAllProjectsToUI, addNewProjectToUI, getActiveProject }
 })();
 export { ProjectUI }
