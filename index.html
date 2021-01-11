@@ -61,7 +61,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form>
+        <form id="edit-proj-form" action="index.html">
           <div class="modal-body">
               <label for="name">Project Name</label>
               <input class="form-control edit-proj-name" type="text" name="name" id="name" max-length="20" required>
@@ -69,7 +69,7 @@
               <textarea class="form-control edit-proj-desc" rows="3" name="description" id="description" maxlength="150"></textarea>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary edit-proj-close" data-dismiss="modal">Close</button>
             <button type="submit" class="btn bg-purple text-white edit-proj-submit submit">Save</button>
           </div>
         </form>
@@ -146,7 +146,7 @@
           <button class="remove-btn proj-del-btn">
             <i class="far fa-trash-alt"></i>
           </button>
-          <button class="remove-btn proj-edit-btn" data-toggle="modal" data-target="#newProj">
+          <button class="remove-btn proj-edit-btn" data-toggle="modal" data-target="#editProj">
             <i class="fas fa-edit"></i>
           </button>
         </div>
