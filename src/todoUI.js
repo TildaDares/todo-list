@@ -103,7 +103,7 @@ const TodoUI = (() => {
         form.appendChild(descInput);
         form.appendChild(dateAndPriorityDiv);
         form.appendChild(formFooter());
-        dateAndPriorityDiv.appendChild(dueDateInput(todo.date, index));
+        dateAndPriorityDiv.appendChild(dueDateInput(todo.dueDate, index));
         dateAndPriorityDiv.appendChild(priority(todo.priority, index));
 
         return form;
