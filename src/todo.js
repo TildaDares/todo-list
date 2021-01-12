@@ -21,7 +21,6 @@ const addTodo = event => {
 }
 
 const removeTodo = event => {
-    event.preventDefault();
     const todoIndex = findTodo(event.target.parentNode.parentNode.parentNode);
     const projectIndex = ProjectUI.getActiveProject().projectIndex;
     const allProjects = getProjects();
@@ -30,10 +29,24 @@ const removeTodo = event => {
     document.querySelector('#accordionExample').removeChild(event.target.parentNode.parentNode.parentNode);
 }
 
+const editTodo = event => {
+    event.preventDefault();
+    const projectIndex = ProjectUI.getActiveProject().projectIndex;
+    const todoIndex = findTodo(event.target.parentNode.parentNode.parentNode);
+    const allProjects = getProjects();
+    const todo = allProjects[projectIndex].lists[todoIndex];
+    todo.name = event.target.querySelector('.edit-task-name').value;
+    todo.description = event.target.querySelector('.edit-task-desc').value;
+    todo.dueDate = event.target.querySelector('.edit-task-date').value;
+    todo.priority = event.target.querySelector('.edit-task-pri').value;
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+    TodoUI.editTodoUI(event.target, todo);
+}
+
 const findTodo = element => {
     const accordion = document.querySelector('#accordionExample');
     let index = Array.from(accordion.children).indexOf(element);
     return index;
 }
 
-export { addTodo, removeTodo }
+export { addTodo, removeTodo, editTodo }

@@ -1,16 +1,16 @@
 import addListeners from './todoDynamicListeners'
 const TodoUI = (() => {
-    const createCard = (list, index) => {
+    const createCard = (todo, index) => {
         const accordion = document.querySelector('.accordion');
         const card = document.createElement('div');
         card.className = 'card shadow mb-4';
         accordion.appendChild(card);
-        card.appendChild(createCardHeader(list, index));
-        card.appendChild(createCardBodyContainer(list, index));
+        card.appendChild(createCardHeader(todo, index));
+        card.appendChild(createCardBodyContainer(todo, index));
         addListeners(index);
     }
 
-    const createCardHeader = (list, index) => {
+    const createCardHeader = (todo, index) => {
         const cardHeader = document.createElement('div');
         const headingTag = document.createElement('h2');
         const checkboxDiv = document.createElement('div');
@@ -19,14 +19,14 @@ const TodoUI = (() => {
         const delTaskBtn = document.createElement('button');
         const delIcon = document.createElement('i');
 
-        cardHeader.className = `card-header shadow pt-0 ${list.priority} d-flex justify-content-between align-items-baseline`;
+        cardHeader.className = `card-header shadow pt-0 ${todo.priority} d-flex justify-content-between align-items-baseline`;
         headingTag.className = 'mb-0 d-flex align-items-baseline';
         checkboxDiv.className = 'form-check mr-1';
         checkbox.className = 'form-check-input position-static task-complete-checkbox';
         accordionBtn.className = 'btn btn-block text-left px-0 w-auto task-title-btn';
         delTaskBtn.className = 'remove-btn task-del-btn';
         delIcon.className = 'far fa-trash-alt';
-        accordionBtn.textContent = list.name;
+        accordionBtn.textContent = todo.name;
 
         checkbox.type = 'checkbox';
         checkbox.id = `checkbox${index}`;
@@ -49,24 +49,24 @@ const TodoUI = (() => {
         return cardHeader;
     }
 
-    const createCardBodyContainer = (list, index) => {
+    const createCardBodyContainer = (todo, index) => {
         const container = document.createElement('div');
         const cardBody = document.createElement('div');
 
         container.className = 'collapse';
-        cardBody.className = `card-body ${list.priority}`;
+        cardBody.className = `card-body ${todo.priority}`;
         container.id = `collapse${index}`;
 
         container.setAttribute('data-parent', '#accordionExample');
         container.setAttribute('aria-labelledby', `heading${index}`);
 
         container.appendChild(cardBody);
-        cardBody.appendChild(createTaskEditForm(list, index));
+        cardBody.appendChild(createTaskEditForm(todo, index));
 
         return container;
     }
 
-    const createTaskEditForm = (list, index) => {
+    const createTaskEditForm = (todo, index) => {
         const form = document.createElement('form');
         const label = document.createElement('label');
         const nameInput = document.createElement('input');
@@ -79,14 +79,14 @@ const TodoUI = (() => {
         form.id = `form${index}`;
         form.action = 'index.html';
         nameInput.id = `name${index}`;
-        nameInput.value = list.name;
+        nameInput.value = todo.name;
         nameInput.maxlength = '20';
         nameInput.type = 'text';
         nameInput.name = 'name';
         nameInput.required = 'true';
         descInput.className = 'form-control mb-2 edit-task-desc';
         descInput.id = `description${index}`;
-        descInput.value = list.description;
+        descInput.value = todo.description;
         descInput.maxlength = '150';
         descInput.rows = '3';
         descInput.name = 'description';
@@ -103,8 +103,8 @@ const TodoUI = (() => {
         form.appendChild(descInput);
         form.appendChild(dateAndPriorityDiv);
         form.appendChild(formFooter());
-        dateAndPriorityDiv.appendChild(dueDateInput(list.date, index));
-        dateAndPriorityDiv.appendChild(priority(list.priority, index));
+        dateAndPriorityDiv.appendChild(dueDateInput(todo.date, index));
+        dateAndPriorityDiv.appendChild(priority(todo.priority, index));
 
         return form;
     }
@@ -180,13 +180,26 @@ const TodoUI = (() => {
 
         div.className = 'form-footer float-right mt-3';
         saveBtn.className = 'btn bg-purple text-white edit-task-submit submit';
-        saveBtn.type = 'button';
+        saveBtn.type = 'submit';
         saveBtn.textContent = 'Save';
 
         div.appendChild(saveBtn);
         return div;
     }
 
-    return { createCard }
+    const editTodoUI = (form, todo) => {
+        form.querySelector('.edit-task-name').value = todo.name;
+        form.querySelector('.edit-task-desc').value = todo.description;
+        form.querySelector('.edit-task-date').value = todo.dueDate;
+        findIndexOfPriority(form.querySelector('.edit-task-pri'), todo.priority);
+        const cardHeader = form.parentNode.parentNode.previousElementSibling;
+        const taskBtn = cardHeader.querySelector('.task-title-btn');
+        const cardBody = form.parentNode;
+        cardBody.className = `card-body ${todo.priority}`;
+        cardHeader.className = `card-header shadow pt-0 ${todo.priority} d-flex justify-content-between align-items-baseline`;
+        taskBtn.textContent = todo.name;
+    }
+
+    return { createCard, editTodoUI }
 })();
 export default TodoUI
