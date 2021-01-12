@@ -130,6 +130,14 @@ button:focus,
     border-bottom: 3px solid green;
 }
 
+.todo-form {
+    padding-bottom: 50px;
+}
+
+.form-footer {
+    margin-top: 20px;
+}
+
 @media(min-width: 700px) {
     .content .hidden {
         display: block;
