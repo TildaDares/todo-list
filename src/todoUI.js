@@ -1,3 +1,4 @@
+import addListeners from './todoDynamicListeners'
 const TodoUI = (() => {
     const createCard = (list, index) => {
         const accordion = document.querySelector('.accordion');
@@ -6,6 +7,7 @@ const TodoUI = (() => {
         accordion.appendChild(card);
         card.appendChild(createCardHeader(list, index));
         card.appendChild(createCardBodyContainer(list, index));
+        addListeners(index);
     }
 
     const createCardHeader = (list, index) => {
@@ -27,6 +29,8 @@ const TodoUI = (() => {
         accordionBtn.textContent = list.name;
 
         checkbox.type = 'checkbox';
+        checkbox.id = `checkbox${index}`;
+        delTaskBtn.id = `del${index}`;
         checkbox.setAttribute = ('aria-label', 'checkbox');
         cardHeader.id = `heading${index}`;
         accordionBtn.type = 'button';
@@ -72,6 +76,8 @@ const TodoUI = (() => {
 
         nameInput.className = 'form-control mb-2 edit-task-name';
         form.className = 'todo-form';
+        form.id = `form${index}`;
+        form.action = 'index.html';
         nameInput.id = `name${index}`;
         nameInput.value = list.name;
         nameInput.maxlength = '20';
