@@ -46,4 +46,5 @@ const editProject = event => {
     $('#editProj').modal('hide');
 }
 
+
 export { addProject, projectEditForm, editProject, removeProject }

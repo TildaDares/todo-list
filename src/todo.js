@@ -12,6 +12,7 @@ const addTodo = event => {
     const priority = document.querySelector('.new-task-pri').value;
     const dueDate = document.querySelector('.new-task-date').value;
     $('#newTask').modal('hide');
+
     const allProjects = getProjects();
     const todo = Todo(name, desc, priority, dueDate, false);
     const index = ProjectUI.getActiveProject().projectIndex;
@@ -35,10 +36,12 @@ const editTodo = event => {
     const todoIndex = findTodo(event.target.parentNode.parentNode.parentNode);
     const allProjects = getProjects();
     const todo = allProjects[projectIndex].lists[todoIndex];
+
     todo.name = event.target.querySelector('.edit-task-name').value;
     todo.description = event.target.querySelector('.edit-task-desc').value;
     todo.dueDate = event.target.querySelector('.edit-task-date').value;
     todo.priority = event.target.querySelector('.edit-task-pri').value;
+
     localStorage.setItem('allProjects', JSON.stringify(allProjects));
     TodoUI.editTodoUI(event.target, todo);
 }

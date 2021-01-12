@@ -14,9 +14,19 @@ button:focus,
     box-shadow: none;
 }
 
+.nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+}
+
 .form-control:focus {
     border-color: transparent;
     box-shadow: 0 0 0 0.1rem rgb(206 212 218);
+}
+
+section {
+    margin: 1.5rem;
 }
 
 #hamburgers {
@@ -41,6 +51,7 @@ button:focus,
     height: 94vh;
     overflow-y: auto;
     z-index: 1000;
+    padding-right: 25px;
 }
 
 .content .hamitems-div ul {
@@ -138,36 +149,49 @@ button:focus,
     margin-top: 20px;
 }
 
-@media(min-width: 700px) {
+
+/* .clear {
+    position: fixed;
+    top: 66px;
+    right: 20px;
+    z-index: 2000;
+} */
+
+@media(min-width: 800px) {
     .content .hidden {
         display: block;
-        position: static;
-        background: white;
-        height: 94vh;
-        overflow-y: auto;
-        z-index: 1000;
+        position: fixed;
+        height: 100%;
+        width: 300px;
+        top: 66px;
+        padding-right: 25px;
     }
     .nav-bar label {
         display: none;
-    }
-    .content {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
     }
     .nav-bar {
         padding-bottom: .5rem !important;
     }
     section {
+        margin-left: 310px;
         padding-left: 1rem;
         padding-right: 1rem;
     }
 }
 
-@media(min-width: 1200px) {
+@media(min-width: 1100px) {
     .accordion .card {
         width: 600px;
     }
-    .content {
-        grid-template-columns: 0.7fr 2fr;
+}
+
+@media(min-width: 1300px) {
+    .content .hidden {
+        width: 350px;
+    }
+    section {
+        margin-left: 360px;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }

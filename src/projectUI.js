@@ -28,6 +28,7 @@ const ProjectUI = (() => {
         projBtns.style.display = 'none';
         newTaskBtn.style.display = 'none';
         hamitems.removeChild(activeProjectElem.parentNode);
+        document.querySelector('.accordion').innerHTML = '';
         if (temp) {
             temp.firstElementChild.click()
         } else {
@@ -83,6 +84,7 @@ const ProjectUI = (() => {
         newTaskBtn.style.display = 'block';
         projName.textContent = activeProject.name;
         projDesc.textContent = activeProject.description;
+        document.querySelector('.accordion').innerHTML = "";
         renderAllProjectTodos();
         ProjectListeners.addListeners();
     }

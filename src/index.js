@@ -1,6 +1,7 @@
 import hamburgerMenu from './hamburger.js'
 import { ProjectUI } from './projectUI.js'
 import { addProject, projectEditForm } from './project.js'
+import defaultProject from './defaultProject'
 
 function getProjects() {
     return JSON.parse(localStorage.getItem("allProjects") || "[]");
@@ -19,5 +20,7 @@ function addListeners() {
     document.querySelector('#new-proj-form').addEventListener('submit', addProject);
     $('#editProj').on('shown.bs.modal', projectEditForm);
 }
+
+window.onload = defaultProject();
 init();
 export { getProjects }
