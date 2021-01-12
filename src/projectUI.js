@@ -1,5 +1,5 @@
 import { getProjects } from './index.js'
-import { removeProject } from './project.js'
+import Listeners from './eventListeners.js'
 const ProjectUI = (() => {
     const hamitems = document.querySelector('.hamitems');
     let activeProject;
@@ -7,7 +7,6 @@ const ProjectUI = (() => {
     let projectIndex;
     let projBtns = document.querySelector('.proj-btns');
     let newTaskBtn = document.querySelector('.new-task-btn');
-    let projDelBtn = document.querySelector('.proj-del-btn');
     let projName = document.querySelector('.proj-name');
     let projDesc = document.querySelector('.proj-desc');
     const addAllProjectsToUI = () => {
@@ -26,7 +25,6 @@ const ProjectUI = (() => {
         let temp = chooseNextProjectAfterDel();
         projBtns.style.display = 'none';
         newTaskBtn.style.display = 'none';
-        projDelBtn.removeEventListener('click', removeProject);
         hamitems.removeChild(activeProjectElem.parentNode);
         if (temp) {
             temp.firstElementChild.click()
@@ -34,6 +32,7 @@ const ProjectUI = (() => {
             projName.textContent = "";
             projDesc.textContent = "";
         }
+        Listeners.removeListeners();
     }
 
     const chooseNextProjectAfterDel = () => {
@@ -74,9 +73,9 @@ const ProjectUI = (() => {
         e.target.classList.add('project-active');
         projBtns.style.display = 'block';
         newTaskBtn.style.display = 'block';
-        projDelBtn.addEventListener('click', removeProject);
         projName.textContent = activeProject.name;
         projDesc.textContent = activeProject.description;
+        Listeners.addListeners();
     }
 
     const findProject = element => {
