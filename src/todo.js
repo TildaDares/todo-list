@@ -1,5 +1,6 @@
 import { ProjectUI } from './projectUI.js'
 import { getProjects } from './index.js'
+import TodoUI from './todoUI.js'
 const Todo = function(name, description, priority, dueDate, completed) {
     return { name, description, priority, dueDate, completed }
 }
@@ -12,8 +13,12 @@ const addTodo = event => {
     const dueDate = document.querySelector('.new-task-date').value;
     $('#newTask').modal('hide');
     let allProjects = getProjects();
+    const todo = Todo(name, desc, priority, dueDate, false);
     const index = ProjectUI.getActiveProject().projectIndex;
-    allProjects[index].lists.push(Todo(name, desc, priority, dueDate, false));
+    allProjects[index].lists.push(todo);
     localStorage.setItem('allProjects', JSON.stringify(allProjects));
+    TodoUI.createCard(todo, getProjects()[index].length - 1);
 }
+
+
 export { addTodo }

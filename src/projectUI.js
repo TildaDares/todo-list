@@ -1,5 +1,6 @@
 import { getProjects } from './index.js'
-import Listeners from './eventListeners.js'
+import ProjectListeners from './projectDynamicListeners.js'
+import TodoUI from './todoUI.js'
 const ProjectUI = (() => {
     const hamitems = document.querySelector('.hamitems');
     let activeProject;
@@ -9,6 +10,7 @@ const ProjectUI = (() => {
     let newTaskBtn = document.querySelector('.new-task-btn');
     let projName = document.querySelector('.proj-name');
     let projDesc = document.querySelector('.proj-desc');
+
     const addAllProjectsToUI = () => {
         let allProjects = getProjects();
         for (let i = 0; i < allProjects.length; i++) {
@@ -32,7 +34,7 @@ const ProjectUI = (() => {
             projName.textContent = "";
             projDesc.textContent = "";
         }
-        Listeners.removeListeners();
+        ProjectListeners.removeListeners();
     }
 
     const chooseNextProjectAfterDel = () => {
@@ -65,6 +67,12 @@ const ProjectUI = (() => {
         hamitems.append(hr);
     }
 
+    const renderAllProjectTodos = () => {
+        for (let i = 0; i < activeProject.lists.length; i++) {
+            TodoUI.createCard(activeProject.lists[i], i);
+        }
+    }
+
     const printProject = e => {
         if (activeProjectElem) { activeProjectElem.classList.remove('project-active') };
         projectIndex = findProject(e.target.parentNode);
@@ -75,7 +83,8 @@ const ProjectUI = (() => {
         newTaskBtn.style.display = 'block';
         projName.textContent = activeProject.name;
         projDesc.textContent = activeProject.description;
-        Listeners.addListeners();
+        renderAllProjectTodos();
+        ProjectListeners.addListeners();
     }
 
     const findProject = element => {
@@ -88,4 +97,5 @@ const ProjectUI = (() => {
     }
     return { addAllProjectsToUI, addNewProjectToUI, getActiveProject, removeProjectFromUI }
 })();
+
 export { ProjectUI }

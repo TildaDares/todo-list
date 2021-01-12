@@ -1,7 +1,7 @@
 import { editProject, removeProject } from './project.js'
 import { addTodo } from './todo.js'
 
-const Listeners = (() => {
+const ProjectListeners = (() => {
     const editProjForm = document.querySelector('#edit-proj-form');
     const projDelBtn = document.querySelector('.proj-del-btn');
     const newTaskForm = document.querySelector('#new-task-form');
@@ -19,4 +19,4 @@ const Listeners = (() => {
     }
     return { addListeners, removeListeners }
 })();
-export default Listeners
+export default ProjectListeners
