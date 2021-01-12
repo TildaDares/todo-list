@@ -43,10 +43,30 @@ const editTodo = event => {
     TodoUI.editTodoUI(event.target, todo);
 }
 
+const completedTodo = event => {
+    const projectIndex = ProjectUI.getActiveProject().projectIndex;
+    const todoIndex = findTodo(event.target.parentNode.parentNode.parentNode.parentNode);
+    const allProjects = getProjects();
+    const todo = allProjects[projectIndex].lists[todoIndex];
+    todo.completed = event.target.checked;
+    lineThrough(todo.completed, event.target.parentNode.nextElementSibling);
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+}
+
+const lineThrough = (completed, button) => {
+    if (completed) {
+        button.style.textDecoration = 'line-through';
+        button.setAttribute('disabled', 'true');
+    } else {
+        button.style.textDecoration = 'none';
+        button.removeAttribute('disabled');
+    }
+}
+
 const findTodo = element => {
     const accordion = document.querySelector('#accordionExample');
     let index = Array.from(accordion.children).indexOf(element);
     return index;
 }
 
-export { addTodo, removeTodo, editTodo }
+export { addTodo, removeTodo, editTodo, completedTodo }

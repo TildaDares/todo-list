@@ -30,6 +30,7 @@ const TodoUI = (() => {
 
         checkbox.type = 'checkbox';
         checkbox.id = `checkbox${index}`;
+        checkbox.checked = todo.completed;
         delTaskBtn.id = `del${index}`;
         checkbox.setAttribute = ('aria-label', 'checkbox');
         cardHeader.id = `heading${index}`;
@@ -38,6 +39,7 @@ const TodoUI = (() => {
         accordionBtn.setAttribute('data-target', `#collapse${index}`);
         accordionBtn.setAttribute('aria-expanded', 'true');
         accordionBtn.setAttribute('aria-controls', `collapse${index}`);
+        lineThrough(todo.completed, accordionBtn);
 
         checkboxDiv.appendChild(checkbox);
         headingTag.appendChild(checkboxDiv);
@@ -47,6 +49,13 @@ const TodoUI = (() => {
         cardHeader.appendChild(delTaskBtn);
 
         return cardHeader;
+    }
+
+    const lineThrough = (completed, button) => {
+        if (completed) {
+            button.style.textDecoration = 'line-through';
+            button.setAttribute('disabled', 'true');
+        }
     }
 
     const createCardBodyContainer = (todo, index) => {
