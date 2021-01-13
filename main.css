@@ -149,14 +149,6 @@ section {
     margin-top: 20px;
 }
 
-
-/* .clear {
-    position: fixed;
-    top: 66px;
-    right: 20px;
-    z-index: 2000;
-} */
-
 @media(min-width: 800px) {
     .content .hidden {
         display: block;
