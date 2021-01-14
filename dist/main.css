@@ -1,189 +1,189 @@
 .bg-purple {
-    background-color: #606;
+	background-color: #606;
 }
 
 .text-purple {
-    color: #606;
+	color: #606;
 }
 
 .btn.focus,
 .btn:focus,
 button:focus,
- :focus {
-    outline: none;
-    box-shadow: none;
+:focus {
+	outline: none;
+	box-shadow: none;
 }
 
 .nav-bar {
-    position: sticky;
-    top: 0;
-    z-index: 2000;
+	position: sticky;
+	top: 0;
+	z-index: 2000;
 }
 
 .form-control:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 0.1rem rgb(206 212 218);
+	border-color: transparent;
+	box-shadow: 0 0 0 0.1rem rgb(206 212 218);
 }
 
 section {
-    margin: 1.5rem;
+	margin: 1.5rem;
 }
 
 #hamburgers {
-    display: none;
+	display: none;
 }
 
 .content .hidden {
-    display: none;
+	display: none;
 }
 
 .nav-bar label {
-    font-size: 1.9rem;
-    cursor: pointer;
+	font-size: 1.9rem;
+	cursor: pointer;
 }
 
 .content .active {
-    position: absolute;
-    top: 53px;
-    left: 0;
-    width: 70%;
-    background: white;
-    height: 94vh;
-    overflow-y: auto;
-    z-index: 1000;
-    padding-right: 25px;
+	position: absolute;
+	top: 53px;
+	left: 0;
+	width: 70%;
+	background: white;
+	height: 94vh;
+	overflow-y: auto;
+	z-index: 1000;
+	padding-right: 25px;
 }
 
 .content .hamitems-div ul {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 .remove-btn,
 .accordion .card {
-    outline: none;
-    border: none;
-    background: transparent
+	outline: none;
+	border: none;
+	background: transparent;
 }
 
 .content .hamitems-div .hamitems button {
-    font-size: 1.2rem;
-    width: 100%;
-    text-align: left;
-    padding: 8px;
+	font-size: 1.2rem;
+	width: 100%;
+	text-align: left;
+	padding: 8px;
 }
 
 .content .hamitems-div .hamitems button:hover {
-    background: #00000008;
-    color: black;
-    border-radius: 5px;
+	background: #00000008;
+	color: black;
+	border-radius: 5px;
 }
 
 .content .hamitems-div .hamitems button:focus,
 .project-active {
-    background-color: #66006617;
-    border-radius: 5px;
+	background-color: #66006617;
+	border-radius: 5px;
 }
 
 .submit:hover {
-    background-color: #660066bf;
+	background-color: #660066bf;
 }
 
 .content .hamitems-div .new-proj button:hover {
-    text-decoration: underline black;
+	text-decoration: underline black;
 }
 
 .proj-btns,
 .new-task-btn {
-    display: none;
+	display: none;
 }
 
 .fa-trash-alt:hover,
 .fa-edit:hover {
-    color: #606;
-    transform: scale(1.2);
+	color: #606;
+	transform: scale(1.2);
 }
 
 .accordion .card {
-    width: 100%
+	width: 100%;
 }
 
 .accordion .card-header {
-    background: #fff;
-    word-break: break-word;
+	background: #fff;
+	word-break: break-word;
 }
 
 .card-header:hover {
-    background-color: #6600660d;
+	background-color: #6600660d;
 }
 
 .priority {
-    width: auto;
-    border-radius: 25px;
-    text-align: center;
-    float: right;
-    padding: 2px 15px;
-    margin-top: 10px;
+	width: auto;
+	border-radius: 25px;
+	text-align: center;
+	float: right;
+	padding: 2px 15px;
+	margin-top: 10px;
 }
 
 .critical {
-    border-bottom: 3px solid red;
+	border-bottom: 3px solid red;
 }
 
 .high {
-    border-bottom: 3px solid orange;
+	border-bottom: 3px solid orange;
 }
 
 .medium {
-    border-bottom: 3px solid yellow;
+	border-bottom: 3px solid yellow;
 }
 
 .low {
-    border-bottom: 3px solid green;
+	border-bottom: 3px solid green;
 }
 
 .todo-form {
-    padding-bottom: 50px;
+	padding-bottom: 50px;
 }
 
 .form-footer {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
-@media(min-width: 800px) {
-    .content .hidden {
-        display: block;
-        position: fixed;
-        height: 100%;
-        width: 300px;
-        top: 66px;
-        padding-right: 25px;
-    }
-    .nav-bar label {
-        display: none;
-    }
-    .nav-bar {
-        padding-bottom: .5rem !important;
-    }
-    section {
-        margin-left: 310px;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+@media (min-width: 800px) {
+	.content .hidden {
+		display: block;
+		position: fixed;
+		height: 100%;
+		width: 300px;
+		top: 66px;
+		padding-right: 25px;
+	}
+	.nav-bar label {
+		display: none;
+	}
+	.nav-bar {
+		padding-bottom: 0.5rem !important;
+	}
+	section {
+		margin-left: 310px;
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
 }
 
-@media(min-width: 1100px) {
-    .accordion .card {
-        width: 600px;
-    }
+@media (min-width: 1100px) {
+	.accordion .card {
+		width: 600px;
+	}
 }
 
-@media(min-width: 1300px) {
-    .content .hidden {
-        width: 350px;
-    }
-    section {
-        margin-left: 360px;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+@media (min-width: 1300px) {
+	.content .hidden {
+		width: 350px;
+	}
+	section {
+		margin-left: 360px;
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
 }
